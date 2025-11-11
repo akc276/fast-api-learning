@@ -1,0 +1,9 @@
+{
+    "terminal.integrated.defaultProfile.windows": "Environment setup",
+    "terminal.integrated.profiles.windows": {
+      "Environment setup": {
+        "path": "C:\\Windows\\System32\\cmd.exe",
+        "args": ["/K", ".vscode\\env_setup.bat"]
+      }
+    }
+}
