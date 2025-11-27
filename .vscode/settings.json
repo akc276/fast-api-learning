@@ -3,7 +3,13 @@
     "terminal.integrated.profiles.windows": {
       "Environment setup": {
         "path": "C:\\Windows\\System32\\cmd.exe",
-        "args": ["/K", ".vscode\\env_setup.bat"]
+        "args": ["/K", "${workspaceFolder}\\.vscode\\env_setup.bat"]
       }
-    }
+    },
+    "editor.pasteAs.enabled": false,
+    "editor.pasteAs.showPasteSelector": "never", // Prevents the selector from showing up at all
+    "editor.formatOnPaste": false,
+    "typescript.updateImportsOnPaste.enabled": false, // Example for TypeScript
+    "javascript.updateImportsOnPaste.enabled": false, // Example for JavaScript
+    "markdown.updateLinksOnPaste": "never" // Example for Markdown
 }

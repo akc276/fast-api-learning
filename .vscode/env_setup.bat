@@ -3,13 +3,30 @@ setlocal
 
 @REM Customizable variables
 set PORT=44787
-@REM set targetDir="%OneDrive%\Documents\Codes\Python\enna\repos"
-set targetDir="%CD%\Python\GUI\p3"
-set ENNA_CONFIG_PATH="%~dp0\Python\enna\enna_tc_tutorial-main (1)\enna_tc_tutorial-main\config"
+set targetDir="%CD%\SimpleAPI"
 
 set  NODE_TLS_REJECT_UNAUTHORIZED=0
 @REM Sets the path for pip.ini file, without it, it won't take index-url
 set PIP_CONFIG_FILE=%~dp0\.venv\pip.ini
+
+@REM Sets workspace variable
+set "workspace=%~dp0.."
+
+@echo off
+setlocal
+
+:: Call a subroutine and pass the variable as an argument
+call :ResolvePath "%workspace%"
+
+echo Resolved workspace: %workspace%
+
+endlocal
+exit /b
+
+:ResolvePath
+:: %~f1 gives the full absolute path of the argument
+set "workspace=%~f1"
+
 
 
 @REM Sets path variables
@@ -38,19 +55,20 @@ echo Node.js environment loaded!
 
 @REM START - Decide which directory is opened in terminal
 set "launchDir=%CD%"
-set "batDir=%~dp0"
 
 :: Remove trailing backslash if present
 if "%launchDir:~-1%"=="\" set "launchDir=%launchDir:~0,-1%"
-if "%batDir:~-1%"=="\" set "batDir=%batDir:~0,-1%"
+if "%workspace:~-1%"=="\" set "workspace=%workspace:~0,-1%"
 
 echo Launch Directory: %launchDir%
-echo Batch File Location: %batDir%
+echo Workspace: %workspace%
 
-if /I "%launchDir%"=="%batDir%" (
+if /I "%launchDir%"=="%workspace%" (
+    echo Setting targetDir
     cd %targetDir%
 ) else (
-    cd launchDir
+    echo Setting launchDir
+    cd %launchDir%
 )
 
 @REM END - Decide which directory is opened in terminal
